@@ -17,6 +17,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.android.tvleanback">
 
+    <uses-sdk
+        android:minSdkVersion="21"
+        android:targetSdkVersion="34" />
+
     <permission
         android:name="${applicationId}.ACCESS_VIDEO_DATA"
         android:protectionLevel="signature" />
