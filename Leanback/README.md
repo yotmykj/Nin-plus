@@ -94,6 +94,12 @@ Need more information about getting started with Android TV? Check the [official
 |:---:|:---:|:---:|
 | ![Onboarding Fragment](screenshots/onboarding.png) | ![Settings Fragment](screenshots/settings.png) | |
 
+### Generating Screenshots
+To automatically navigate through the sample application and regenerate all 10 screenshot assets from a connected Android TV emulator or device, execute the included script:
+```sh
+./capture_screenshots.sh [-s <serial>]
+```
+
 ## Support
 
 If you need additional help, our community might be able to help.
