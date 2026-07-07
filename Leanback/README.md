@@ -97,7 +97,7 @@ Need more information about getting started with Android TV? Check the [official
 ### Generating Screenshots
 To automatically navigate through the sample application and regenerate all 10 screenshot assets from a connected Android TV emulator or device, execute the included script:
 ```sh
-./capture_screenshots.sh [-s <serial>]
+./screenshots/capture_screenshots.sh [-s <serial>]
 ```
 
 ## Support

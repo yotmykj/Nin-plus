@@ -29,7 +29,7 @@ ADB=${ADB:-adb}
 ADB_CMD="$ADB ${SERIAL:+-s $SERIAL}"
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-OUTPUT_DIR="$SCRIPT_DIR/screenshots"
+OUTPUT_DIR="$SCRIPT_DIR"
 mkdir -p "$OUTPUT_DIR"
 
 echo "=== Leanback Sample App Screenshot Generator ==="
