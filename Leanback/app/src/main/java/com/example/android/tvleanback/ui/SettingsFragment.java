@@ -53,7 +53,7 @@ public class SettingsFragment extends LeanbackSettingsFragment
     }
 
     @Override
-    public Preference findPreference(CharSequence charSequence) {
+    public <T extends Preference> T findPreference(CharSequence charSequence) {
         return mPreferenceFragment.findPreference(charSequence);
     }
 
