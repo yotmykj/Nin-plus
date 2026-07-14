@@ -79,7 +79,7 @@ public class PlaybackFragment extends VideoSupportFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mVideo = getActivity().getIntent().getParcelableExtra(VideoDetailsActivity.VIDEO);
+        mVideo = requireActivity().getIntent().getParcelableExtra(VideoDetailsActivity.VIDEO);
         mPlaylist = new Playlist();
 
         mVideoLoaderCallbacks = new VideoLoaderCallbacks(mPlaylist);
@@ -132,10 +132,10 @@ public class PlaybackFragment extends VideoSupportFragment {
     }
 
     private void initializePlayer() {
-        mPlayer = new ExoPlayer.Builder(getActivity()).build();
-        mPlayerAdapter = new LeanbackPlayerAdapter(getActivity(), mPlayer, UPDATE_DELAY);
+        mPlayer = new ExoPlayer.Builder(requireContext()).build();
+        mPlayerAdapter = new LeanbackPlayerAdapter(requireContext(), mPlayer, UPDATE_DELAY);
         mPlaylistActionListener = new PlaylistActionListener(mPlaylist);
-        mPlayerGlue = new VideoPlayerGlue(getActivity(), mPlayerAdapter, mPlaylistActionListener);
+        mPlayerGlue = new VideoPlayerGlue(requireContext(), mPlayerAdapter, mPlaylistActionListener);
         mPlayerGlue.setHost(new VideoSupportFragmentGlueHost(this));
         mPlayerGlue.playWhenPrepared();
 
@@ -149,7 +149,10 @@ public class PlaybackFragment extends VideoSupportFragment {
         if (mPlayer != null) {
             mPlayer.release();
             mPlayer = null;
-            mPlayerGlue = null;
+            if (mPlayerGlue != null) {
+                mPlayerGlue.setHost(null);
+                mPlayerGlue = null;
+            }
             mPlayerAdapter = null;
             mPlaylistActionListener = null;
         }
@@ -232,16 +235,16 @@ public class PlaybackFragment extends VideoSupportFragment {
             if (item instanceof Video) {
                 Video video = (Video) item;
 
-                Intent intent = new Intent(getActivity(), VideoDetailsActivity.class);
+                Intent intent = new Intent(requireContext(), VideoDetailsActivity.class);
                 intent.putExtra(VideoDetailsActivity.VIDEO, video);
 
                 Bundle bundle =
                         ActivityOptionsCompat.makeSceneTransitionAnimation(
-                                        getActivity(),
+                                        requireActivity(),
                                         ((ImageCardView) itemViewHolder.view).getMainImageView(),
                                         VideoDetailsActivity.SHARED_ELEMENT_NAME)
                                 .toBundle();
-                getActivity().startActivity(intent, bundle);
+                startActivity(intent, bundle);
             }
         }
     }
@@ -265,7 +268,7 @@ public class PlaybackFragment extends VideoSupportFragment {
             // When loading related videos or videos for the playlist, query by category.
             String category = args.getString(VideoContract.VideoEntry.COLUMN_CATEGORY);
             return new CursorLoader(
-                    getActivity(),
+                    requireContext(),
                     VideoContract.VideoEntry.CONTENT_URI,
                     null,
                     VideoContract.VideoEntry.COLUMN_CATEGORY + " = ?",

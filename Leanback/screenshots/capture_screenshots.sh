@@ -14,6 +14,10 @@ SERIAL=${ANDROID_SERIAL:-}
 while [[ $# -gt 0 ]]; do
   case $1 in
     -s|--serial)
+      if [[ $# -lt 2 ]]; then
+        echo "Error: -s/--serial requires an argument."
+        exit 1
+      fi
       SERIAL="$2"
       shift 2
       ;;
@@ -34,7 +38,7 @@ mkdir -p "$OUTPUT_DIR"
 
 echo "=== Leanback Sample App Screenshot Generator ==="
 echo "Output Directory: $OUTPUT_DIR"
-if [[ -n "$SERIAL" ]]; do
+if [[ -n "$SERIAL" ]]; then
   echo "Target Device: $SERIAL"
 fi
 
@@ -48,10 +52,6 @@ $ADB_CMD devices | grep -E '\bdevice\b' > /dev/null || {
 echo "Returning to Home and clearing any system popups..."
 $ADB_CMD shell input keyevent KEYCODE_HOME
 sleep 1
-$ADB_CMD shell input keyevent KEYCODE_BACK
-sleep 1
-$ADB_CMD shell input keyevent KEYCODE_BACK
-sleep 1
 
 capture_screen() {
   local filename=$1
@@ -62,81 +62,79 @@ capture_screen() {
 
 echo "=== 1/10: Onboarding Fragment ==="
 $ADB_CMD shell am start -S -n com.example.android.tvleanback/.ui.OnboardingActivity
-sleep 4
+sleep 8
 capture_screen "onboarding.png" "Onboarding Fragment"
 
 echo "=== Completing Onboarding sequence ==="
+# Just click next four times
 for i in 1 2 3 4; do
-  $ADB_CMD shell input keyevent KEYCODE_DPAD_RIGHT
-  sleep 1
   $ADB_CMD shell input keyevent KEYCODE_DPAD_CENTER
   sleep 1
 done
-sleep 2
 
 echo "=== 2/10: Browse Fragment ==="
 $ADB_CMD shell am start -S -n com.example.android.tvleanback/.ui.MainActivity
-sleep 4
+sleep 8
 capture_screen "browse.png" "Browse Fragment"
 
 echo "=== 3/10: Row Fragment (Card Views) ==="
 $ADB_CMD shell input keyevent KEYCODE_DPAD_RIGHT
-sleep 2
+sleep 5
 capture_screen "row.png" "Row Fragment (Card Views)"
 
 echo "=== 4/10: Details Fragment ==="
 $ADB_CMD shell input keyevent KEYCODE_DPAD_CENTER
-sleep 4
+sleep 8
 capture_screen "details.png" "Details Fragment"
 
 echo "=== 5/10: Row Fragment in Details Fragment ==="
 $ADB_CMD shell input keyevent KEYCODE_DPAD_DOWN
-sleep 1
-$ADB_CMD shell input keyevent KEYCODE_DPAD_DOWN
 sleep 2
+$ADB_CMD shell input keyevent KEYCODE_DPAD_DOWN
+sleep 5
 capture_screen "details_row.png" "Row Fragment in Details Fragment"
 
 echo "=== 6/10: Vertical Grid Fragment ==="
 $ADB_CMD shell am start -S -n com.example.android.tvleanback/.ui.VerticalGridActivity
-sleep 4
+sleep 8
 capture_screen "vertical_grid.png" "Vertical Grid Fragment"
 
 echo "=== 7/10: Search Fragment ==="
 $ADB_CMD shell am start -S -n com.example.android.tvleanback/.ui.SearchActivity
-sleep 4
+sleep 6
 capture_screen "search.png" "Search Fragment"
 
 echo "=== 8/10: Guided Step Fragment ==="
 $ADB_CMD shell am start -S -n com.example.android.tvleanback/.ui.GuidedStepActivity
-sleep 4
+sleep 8 
 capture_screen "guided_step.png" "Guided Step Fragment"
 
 echo "=== 9/10: Settings Fragment ==="
 # Launch MainActivity first so BrowseFragment renders in the background under the side-panel
 $ADB_CMD shell am start -S -n com.example.android.tvleanback/.ui.MainActivity
-sleep 4
+sleep 8
 $ADB_CMD shell am start -n com.example.android.tvleanback/.ui.SettingsActivity
-sleep 3
+sleep 8
 capture_screen "settings.png" "Settings Fragment"
 
 echo "=== 10/10: Error Fragment ==="
 $ADB_CMD shell am start -S -n com.example.android.tvleanback/.ui.MainActivity
-sleep 4
+sleep 8
 $ADB_CMD shell input keyevent KEYCODE_DPAD_LEFT
-sleep 1
+sleep 2
 for i in $(seq 1 6); do
   $ADB_CMD shell input keyevent KEYCODE_DPAD_DOWN
-  sleep 1
+  sleep 2
 done
 $ADB_CMD shell input keyevent KEYCODE_DPAD_RIGHT
-sleep 1
+sleep 2
 $ADB_CMD shell input keyevent KEYCODE_DPAD_RIGHT
-sleep 1
+sleep 2
 $ADB_CMD shell input keyevent KEYCODE_DPAD_RIGHT
-sleep 1
+sleep 2
 $ADB_CMD shell input keyevent KEYCODE_DPAD_CENTER
-sleep 3
+sleep 8
 capture_screen "error.png" "Error Fragment"
 
 echo ""
-echo "=== ✅ All 10 screenshots successfully generated in: $OUTPUT_DIR ==="
+echo "=== ✅ All screenshots successfully generated in: $OUTPUT_DIR ==="
