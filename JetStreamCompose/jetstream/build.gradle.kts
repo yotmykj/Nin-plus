@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2023 Google
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,12 +28,12 @@ kotlin {
 }
 
 android {
-    namespace = "com.google.jetstream"
+    namespace = "com.nin.tv"
     // Needed for latest androidx snapshot build
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.google.jetstream"
+        applicationId = "com.nin.tv"
         minSdk = 28
         targetSdk = 35
         versionCode = 1
