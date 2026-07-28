@@ -1,45 +1,45 @@
-Android TV Samples Repository
-=============================
+# Nin+
 
-This repository contains a set of individual Android TV projects to help you get started writing Android TV apps.
+A modern open-source video client for Android TV.
 
-- AccessibilityDemo: A Java sample showing how to support accessibility on TVs
-- ClassicsKotlin: A modern Android TV app using Kotlin to show classic videos
-- TvMaterialCatalog: A jetpack-compose app built using Kotlin that demonstrates the usages of components from [Compose for TV libraries](https://developer.android.com/jetpack/androidx/releases/tv) in isolation.
-- JetStreamCompose: A jetpack-compose app using Kotlin that demonstrates the usage of components from the [Compose for TV libraries](https://developer.android.com/jetpack/androidx/releases/tv)
-- Leanback: A Java app that demonstrates a basic Android TV app
-- Leanback Showcase: A Java app that demonstrates many different parts of the Leanback SDK and how to customize them
-- ReferenceAppKotlin: Our newest sample that demonstrates a variety of Android TV and Google TV integrations in Kotlin
+> ⚠️ Nin+ is an independent project and is not affiliated with or endorsed by Google, YouTube, or any other video platform.
 
-## Getting Started
+## Features
 
-- Clone this repo:
+- 📺 Android TV & Google TV
+- 🎮 Full D-pad navigation
+- 🎨 Modern TV interface
+- ⚡ Jetpack Compose for TV
+- 🧩 Material 3
+- 🚀 MVVM Architecture
+- 🔍 Search
+- ⭐ Library
+- ⚙️ Settings
+- ▶️ Video Player
 
-```sh
-git clone https://github.com/android/tv-samples.git
-```
+## Roadmap
 
-- Open the specific project(s) you're interested in within [Android Studio][studio]
+- [x] Project setup
+- [ ] New UI
+- [ ] Navigation
+- [ ] Search
+- [ ] Player
+- [ ] Settings
+- [ ] Performance improvements
 
-Need more information about getting started with Android TV? Check the [official getting started guide][getting-started].
+## Tech Stack
 
-## Additional Resouroces
-
-- [Android TV Introduction](http://www.android.com/tv/)
-- [Android TV Developer Documentation](http://developer.android.com/tv)
-- [Android TV Apps in Google Play Store][store-apps]
-
-## Support
-
-If you need additional help, our community might be able to help.
-
-- Stack Overflow: [http://stackoverflow.com/questions/tagged/android-tv](http://stackoverflow.com/questions/tagged/android-tv)
+- Kotlin
+- Jetpack Compose for TV
+- AndroidX TV Foundation
+- Material 3
+- Media3
+- MVVM
 
 ## License
 
-See the [LICENSE file][license] for details.
+This project is open source under the Apache License 2.0.
 
-[studio]: https://developer.android.com/tools/studio/index.html
-[getting-started]: https://developer.android.com/training/tv/start/start.html
-[store-apps]: https://play.google.com/store/apps/collection/promotion_3000e26_androidtv_apps_all
-[license]: LICENSE
+---
+
+Made with ❤️ by Manas
