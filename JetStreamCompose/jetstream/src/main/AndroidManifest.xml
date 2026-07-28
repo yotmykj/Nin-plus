@@ -14,42 +14,21 @@ https://www.apache.org/licenses/LICENSE-2.0
  See the License for the specific language governing permissions and
  limitations under the License.
 -->
-
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
-
-    <uses-feature
-        android:name="android.software.leanback"
-        android:required="false" />
-
-    <uses-feature
-        android:name="android.hardware.touchscreen"
-        android:required="false" />
-
-    <uses-permission android:name="android.permission.INTERNET" />
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
         android:name=".JetStreamApplication"
         android:allowBackup="true"
-        android:banner="@mipmap/app_banner"
-        android:dataExtractionRules="@xml/data_extraction_rules"
-        android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.App.Starting"
-        android:usesCleartextTraffic="true"
-        tools:targetApi="31">
-
-        <!-- Enable profiling by macrobenchmark -->
-        <profileable
-            android:shell="true"
-            tools:targetApi="31" />
-
+        android:theme="@style/Theme.JetStream">
+        
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.App.Starting">
+            android:theme="@style/Theme.App.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -57,5 +36,4 @@ https://www.apache.org/licenses/LICENSE-2.0
             </intent-filter>
         </activity>
     </application>
-
 </manifest>
